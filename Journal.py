@@ -1,5 +1,3 @@
-
-
 from datetime import datetime
 import os
 
@@ -19,30 +17,3 @@ def create_journal():
 
 if __name__ == "__main__":
     create_journal()
-
-name: Daily Journal
-
-on:
-  schedule:
-    - cron: '0 7 * * *'   # Runs every day at 07:00 UTC (09:00 Germany time)
-  workflow_dispatch:       # Allows manual trigger
-
-jobs:
-  update-journal:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Run journal script
-        run: python journal.py
-
-      
-
-    
