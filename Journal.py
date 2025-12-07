@@ -5,9 +5,8 @@ def create_journal():
     today = datetime.now().strftime("%Y-%m-%d")
     folder = "journal"
     os.makedirs(folder, exist_ok=True)
-
+    
     filename = os.path.join(folder, f"{today}.md")
-
     if not os.path.exists(filename):
         with open(filename, "w") as f:
             f.write(f"# Journal Entry - {today}\n\n")
