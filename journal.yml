@@ -1,7 +1,7 @@
 name: Daily Journal
 
 permissions:
-  contents: write   # 🔥 required for pushing
+  contents: write   #  required for pushing
 
 on:
   schedule:
