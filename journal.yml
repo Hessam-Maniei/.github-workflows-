@@ -1,35 +1,21 @@
-name: Daily Journal
-
-permissions:
-  contents: write   #  required for pushing
-
+name: Journal Runner
 on:
-  schedule:
-    - cron: '0 7 * * *'
   workflow_dispatch:
-
 jobs:
-  update-journal:
+  run-journal:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}   # ensure bot uses correct token
-
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: '3.x'
-
-      - name: Run script
-        run: python journal.py
-
-      - name: Commit and push changes
+          python-version: "3.10"
+      - run: python journal/journal.py
+      - name: Commit and Push Changes
         run: |
-          git config --local user.name "github-actions[bot]"
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git add .
-          git commit -m "Automated journal update for $(date +"%Y-%m-%d")" || echo "No changes to commit"
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git add journal/
+          git commit -m "Automated journal update" || echo "No changes to commit"
           git push
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
