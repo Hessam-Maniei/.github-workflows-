@@ -3,7 +3,7 @@ import os
 
 def create_journal():
     today = datetime.now().strftime("%Y-%m-%d")
-    folder = "journal"
+    folder = "journal.py"
     os.makedirs(folder, exist_ok=True)
     
     filename = os.path.join(folder, f"{today}.md")
