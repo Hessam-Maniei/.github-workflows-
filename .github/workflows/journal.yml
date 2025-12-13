@@ -3,16 +3,17 @@ name: Run Daily Journal
 on:
   workflow_dispatch:
   push:
-    branches: [ main ]
+    branches:
+      - main
   schedule:
-    - cron: "0 8 * * *"
-
+    - cron: "0 8 * * *"   # every day at 08:00 UTC
 
 jobs:
   run:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repo
+      - name: Checkout repository
         uses: actions/checkout@v4
 
       - name: Set up Python
@@ -23,5 +24,5 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
 
-      - name: Run journal.py
-        run: python journal.py
+      - name: Run Journal.py
+        run: python Journal.py
