@@ -1,4 +1,4 @@
-name: Daily Journal
+name: journal.yml
 
 permissions:
   contents: write   #  required for pushing
